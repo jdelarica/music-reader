@@ -1,14 +1,16 @@
 function [ alt_nota ] = note_height( note )
+% NOTE_HEIGHT computes the height from a given note on its music sheet.
+% 
+% [alt_nota] = NOTE_HEIGHT(note) computes the height from a given note,
+% with its sheet lines in NOTE. It returns a string with the note which
+% represents the corresponding height: Do, re, mi...
+
+% Author:   Javier de la Rica
+% Date :    June 2017
 
     inv_note=1-note;
     hist_h=sum(inv_note');
 
-%     figure(131)
-%     subplot(2,2,1),barh(fliplr(hist_h));
-%     set(gca,'Ylim',[0 size(inv,1)])
-%     subplot(2,2,2),imshow(nota1);
-%     subplot(2,2,4),bar(histv);
-%     set(gca,'Xlim',[0 size(inv,2)]) 
 
     ind = hist_h(find(hist_h>0));
     off = mode(double(ind(:)));
@@ -21,17 +23,16 @@ function [ alt_nota ] = note_height( note )
     
   
     
-    % Calculamos el alto del pentagrama
+    % Sheet height
     staff_height=staff_lines(end)-staff_lines(1);
 
-    % Calculamos la separación entre dos líneas del pentagrama
-    % Supongo en todo momento que son equidistantes
+    % Distance between two lines
+    % Supposing they are equidistant...
     lines_distance=staff_lines(2)-staff_lines(1);
 
-    % Creo un 'step1' que será el tamaño de la región de cada valor de
-    % altura
+
     step1=lines_distance/2;
-    % Igualmente, defino el tamaño medio del step1 como 'step2'
+
     step2=lines_distance/4;
 
     altura_intervals=staff_height+step1;
@@ -43,7 +44,6 @@ function [ alt_nota ] = note_height( note )
 
     intervals=[intervals(1)-step1 intervals intervals(end)+step1];
 
-    % Invertimos el vector porque los indices en la imagen están al revés
     intervals=fliplr(intervals);
     
     

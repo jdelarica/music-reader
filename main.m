@@ -1,18 +1,13 @@
 % MAIN
 
 img = imread('img/cumple.jpg');
-% img = imread('img/noche-de-paz.jpg');
-% figure (1), 
-% imshow(double(img))
-% imshow(img);
-% SEPARAR PENTAGRAMAS
-% Primero separo los pentagramas horizontalmente.
+% First, I split the sheet horizontally.
 img_s = horizontal_split(img);
 sheet = [];
-% Después separo los compases de cada pentagrama.
-% RECONOCIMIENTO DEL PENTAGRAMA
+% Splitting the compasses.
+% STAFF DETECTION
 staff = staff_detection(img_s);
-% SEPARAR COMPASES
+% COMPASS SPLIT
 for i = 1:length(staff)
     compass = vertical_split(staff{i});
     
@@ -27,7 +22,11 @@ for i = 1:length(staff)
             sheet = [sheet data '; '];
         end
     end
+    
+%     sheet = [sheet '\n'];
 end
+
+% close(64);
 
 sheet_read = sheet_reader(sheet);
 sheet_translated = translator(sheet_read);

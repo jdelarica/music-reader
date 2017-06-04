@@ -1,5 +1,14 @@
 function [y] = playing(sheet_translated) 
-% fs = 8000;
+% PLAYING computes the algorithm needed to play the chosen music piece.
+% 
+% [y]=PLAYING(sheet_translated) computes a sinousoid signal from
+% SHEET_TRANSLATED, which is a vector of frequencies corresponding to the
+% music piece's notes.  It returns a cell Y containing the information of
+% the piece.
+
+% Author:   Javier de la Rica
+% Date :    June 2017
+
 fs = 44100;
 Ts = 1/fs;
 

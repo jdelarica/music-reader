@@ -22,7 +22,7 @@ function varargout = MusicReader(varargin)
 
 % Edit the above text to modify the response to help MusicReader
 
-% Last Modified by GUIDE v2.5 30-May-2017 20:19:11
+% Last Modified by GUIDE v2.5 04-Jun-2017 13:15:59
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -62,6 +62,9 @@ guidata(hObject, handles);
 % uiwait(handles.figure1);
 
 
+axes(handles.axes2);
+imshow('logo.jpg');
+
 % --- Outputs from this function are returned to the command line.
 function varargout = MusicReader_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
@@ -78,6 +81,8 @@ function choose_Callback(hObject, eventdata, handles)
 % hObject    handle to choose (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
 [file,path]=uigetfile('.jpg','Open File');
 
 if file == 0
@@ -86,7 +91,7 @@ else
  dat_file = strcat(path,file);
 img = importdata(dat_file, 't', 1);
 
-axes(handles.sheet_image)
+axes(handles.axes1);
 imshow(img);
 
 
@@ -107,7 +112,7 @@ for i = 1:length(staff)
         notes = object_detection(compass{j});
         
         for k = 1:length(notes)
-            
+                
             note = notes{k};
             data = note_id(note);
             sheet = [sheet data '; '];
@@ -116,19 +121,15 @@ for i = 1:length(staff)
 end
 
 % imshow(handles.sheet_image,dat_file);
-set(handles.staff, 'String', sheet);
+% sheet_read = sheet_reader(sheet);
+
+% set(handles.staff, 'String', sheet);
 handles.sheet = sheet;
 guidata(hObject, handles)
-
 
 end
 
 
-% --- Executes when figure1 is resized.
-function figure1_SizeChangedFcn(hObject, eventdata, handles)
-% hObject    handle to figure1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 
 % --- Executes on button press in play.
@@ -137,7 +138,39 @@ function play_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
 sheet_read = sheet_reader(handles.sheet);
 sheet_translated = translator(sheet_read);
-playing(sheet_translated); 
+y = playing(sheet_translated); 
+% y = playing(sheet_translated);
+y = cell2mat(y);
+handles.y = y;
+guidata(hObject, handles);
+
+% --- Executes on button press in save.
+function save_Callback(hObject, eventdata, handles)
+% hObject    handle to save (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+filename = 'output.wav';
+audiowrite(filename,handles.y,44100);
+
+
+% --- Executes on button press in help.
+function help_Callback(hObject, eventdata, handles)
+% hObject    handle to help (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+Help();
+
+
+% --- Executes on button press in Sheet.
+function Sheet_Callback(hObject, eventdata, handles)
+% hObject    handle to Sheet (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+sheet = handles.sheet;
+save variable sheet
+
+Sheet();

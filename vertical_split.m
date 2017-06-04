@@ -1,4 +1,13 @@
 function [compass1] = vertical_split(staff)
+% VERTICAL_SPLIT splits all the different elements of an image from a
+% compasss.
+% 
+%   [COMPASS1] = VERTICAL_SPLIT(STAFF) Splits STAFF according to its
+%   different elements and returns a vector of cells which contains a
+%   matrix representing an image with the single object in each cell.
+
+% Author:   Javier de la Rica
+% Date :    June 2017
 
 staff_inv = 1-staff;
 
@@ -12,10 +21,6 @@ M = max(hist_v(:,size(hist_v,2)/3:end));
 split1 = find(hist_v==M);
 split1 = [1 split1];
 
-% figure(1)
-% subplot(2,1,2),bar(hist_v);
-% subplot(2,1,1),imshow(staff);
-% set(gca,'Xlim',[0 size(staff,2)])
 
 compass={};
 k = 1;
@@ -56,7 +61,7 @@ for i = 1:length(compass)
     end
 end
 
-% lim = length(compass2);
+
 M = max(w);
 
 k = 1;

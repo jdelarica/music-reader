@@ -1,6 +1,12 @@
 function [staff] = staff_detection(img_s)
+% STAFF_DETECTION recognizes from an image if it is a music sheet or not.
+% 
+% [staff]=STAFF_DETECTION(img_s) analyzes the different lines from a
+% split image, recognizing if it is a music sheet or not. It returns a
+% cell vector containing those which actually are music sheets.
 
-% img_s es la imagen segmentada horizontalmente
+% Author:   Javier de la Rica
+% Date :    June 2017
 
 staff = {};
 k = 1;

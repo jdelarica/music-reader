@@ -1,4 +1,14 @@
 function sheet_translated = translator(sheet_read)
+% TRANSATOR translates the String in order to play the music piece.
+% 
+% [sheet_translated]=TRANSLATOR(sheet_read) translates the information from
+% the String SHEET_READ into frequencies so the next function can actually
+% play the music piece with the corresponding frequencies. It returns a
+% vector SHEET_TRANSLATED which contains the frequencies corresponding to
+% each note.
+
+% Author:   Javier de la Rica
+% Date :    June 2017
 
 [m,n] = size(sheet_read);
 sheet_translated = {};

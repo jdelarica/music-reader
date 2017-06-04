@@ -1,26 +1,17 @@
 function sheet_read = sheet_reader(sheet)
+% SHEET_READER reads the music sheet from the String SHEET.
+% 
+% [sheet_read]=SHEET_REDER(sheet) reads the music sheet from the string
+% SHEET and splits all the values inf SHEET into different cells in order
+% to ease the playing.
 
+% Author:   Javier de la Rica
+% Date :    June 2017
 
 S = strsplit(sheet);
 [m,n] = size(S);
 notes_aux = cell(1,n);
 cont=1;
-
-% c4 = 261.626; %Do
-% d4 = 293.665; %Re
-% e4 = 329.628; %Mi
-% f4 = 349.228; %Fa
-% g4 = 391.995; %Sol
-% a4 = 440;     %La
-% b4 = 493.883; %Si
-% c5 = 523.251;
-% d5 = 587.330;
-% e5 = 659.255;
-% f5 = 698.456;
-% g5 = 783.991;
-% a5 = 880;
-
-
 
 for i=1:n
 
