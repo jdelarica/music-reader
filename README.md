@@ -1,9 +1,9 @@
 # Music Reader
 
 
-| <img src="/img/img.jpeg" width="180"> | ![Logo](/Images/upc_etsetb.jpg) |
+| <img src="/img/img.jpeg" width="120"> | ![Logo](/Images/upc_etsetb.jpg) |
 | :---: | :---: |
-| Javier de la Rica | delaricajavier@outlook.com |
+| Javier de la Rica | delaricajavier@gmail.com |
 
 
 
